@@ -1,0 +1,40 @@
+{
+  "name": "api-http",
+  "version": "1.0.0",
+  "description": "Simple Node.js class for performing HTTP API requests.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "lint": "standard"
+  },
+  "standard": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aantthony/api-http.git"
+  },
+  "keywords": [
+    "http",
+    "api",
+    "client"
+  ],
+  "author": "Anthony Foster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aantthony/api-http/issues"
+  },
+  "homepage": "https://github.com/aantthony/api-http#readme",
+  "devDependencies": {
+    "mocha": "^2.3.3",
+    "standard": "^5.3.1"
+  },
+  "dependencies": {
+    "es6-promise": "^3.0.2",
+    "methods": "^1.1.1"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
