@@ -8,10 +8,21 @@ var P = (typeof Promise === 'undefined') ? require('es6-promise').Promise : Prom
 module.exports = APIHTTP
 
 function APIHTTP (baseURL, options) {
+  if (!(this instanceof APIHTTP)) {
+    // If `new` was not used:
+    return new APIHTTP(baseURL, options)
+  }
+
+  if (typeof baseURL === 'object') {
+    options = baseURL
+    baseURL = options.baseURL
+  }
+
   options = options || {}
 
   this.baseURL = baseURL
 
+  if (options.baseURL) this.baseURL = options.baseURL
   if (options.error) this.error = options.error
   if (options.success) this.success = options.success
   if (options.headers) this.headers = options.headers
