@@ -116,7 +116,7 @@ proto.request = function (method, path, body, query) {
 var methodsWithoutBody = ['get', 'delete', 'head']
 methodsWithoutBody.forEach(function (method) {
   proto[method] = function (path, query) {
-    return this.request(method, path, null, query)
+    return this.request(method, path, undefined, query)
   }
 })
 
