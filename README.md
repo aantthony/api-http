@@ -11,7 +11,8 @@ npm install api-http
 ```
 
 ## Example Usage
-```
+
+```js
 var APIHTTP = require('api-http');
 
 var facebook = new APIHTTP('https://graph.facebook.com/v2.5/');

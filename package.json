@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "es6-promise": "^3.0.2",
-    "methods": "^1.1.1"
+    "methods": "^1.1.1",
+    "request": "^2.65.0"
   },
   "directories": {
     "test": "test"
