@@ -1,6 +1,6 @@
 {
   "name": "api-http",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Simple Node.js class for performing HTTP API requests.",
   "main": "index.js",
   "engines": {
