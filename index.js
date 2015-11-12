@@ -52,7 +52,7 @@ proto.token = function (accessToken) {
 }
 
 proto.error = function (res) {
-  var message = res.body.message || res.body.msg
+  var message = res.body.message || res.body.msg || res.body.title
   var name = res.body.name
   var code = res.body.code
 
@@ -95,6 +95,7 @@ proto.request = function (method, path, body, query) {
       url: url,
       qs: query,
       json: true,
+      gzip: true,
       body: body
     }, function (err, res, responseBody) {
       if (err) return reject(err)
