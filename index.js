@@ -42,12 +42,23 @@ proto.headers = function () {
       Authorization: 'Bearer ' + this.accessToken
     }
   }
+  if (this.basicAuth) {
+    return {
+      Authorization: 'Basic ' + this.basicAuth
+    }
+  }
   return {}
 }
 
 proto.token = function (accessToken) {
   var newClient = Object.create(this)
   newClient.accessToken = accessToken
+  return newClient
+}
+
+proto.basic = function (username, password) {
+  var newClient = Object.create(this)
+  newClient.basicAuth = new Buffer(username + ':' + password).toString('base64')
   return newClient
 }
 
@@ -61,6 +72,10 @@ proto.error = function (res) {
     message = message || errData.error_user_msg || errData.message
     name = name || errData.type || errData.name
     code = code || errData.code
+
+    if (typeof errData === 'string') {
+      message = errData
+    }
   }
 
   if (typeof res.body === 'string') message = res.body

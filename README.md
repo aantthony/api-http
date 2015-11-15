@@ -33,6 +33,7 @@ Arguments: [path, query]
 Example Usage:
 
 ```js
+var api = require('api-http')('http://example.com/');
 // http://example.com/users?online=true
 api.get('users', {online: true});
 ```
@@ -59,6 +60,17 @@ Example:
 ```js
 facebook.token('2348923984324').get('me')
 ```
+
+### .basic(username, password)
+
+Create a new APIHTTP client scoped with a [Basic Access Authorization](https://en.wikipedia.org/wiki/Basic_access_authentication) header:
+
+Example:
+
+```js
+api.basic('Aladdin', 'open sesame').get('something/x/y')
+```
+
 
 ## Options / Properties
 
