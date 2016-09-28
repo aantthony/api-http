@@ -27,13 +27,13 @@
   },
   "homepage": "https://github.com/aantthony/api-http#readme",
   "devDependencies": {
-    "mocha": "^2.3.3",
-    "standard": "^5.3.1"
+    "mocha": "^3.1.0",
+    "standard": "^8.2.0"
   },
   "dependencies": {
-    "es6-promise": "^3.0.2",
-    "methods": "^1.1.1",
-    "request": "^2.65.0"
+    "es6-promise": "^3.3.1",
+    "methods": "^1.1.2",
+    "request": "^2.75.0"
   },
   "directories": {
     "test": "test"
