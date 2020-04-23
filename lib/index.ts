@@ -40,6 +40,14 @@ async function headersNoop() {
   return {};
 }
 
+export function bearerTokenHeaders(accessToken: string | null) {
+  if (!accessToken) return headersNoop;
+  const Authorization = `Bearer ${accessToken}`;
+  return async () => {
+    return { Authorization };
+  };
+}
+
 export default class ApiClient {
   private baseUrl: string;
   private getHeaders: HeadersProvider;
@@ -49,14 +57,8 @@ export default class ApiClient {
     this.getHeaders = getHeaders || headersNoop;
   }
 
-  withAccessToken(value: string) {
-    if (!value) {
-      return new ApiClient(this.baseUrl, headersNoop);
-    }
-    const Authorization = `Bearer ${value}`;
-    return new ApiClient(this.baseUrl, async () => {
-      return { Authorization };
-    });
+  withAccessToken(value: string | null) {
+    return new ApiClient(this.baseUrl, bearerTokenHeaders(value));
   }
 
   withBasicAuth(username: string, password: string) {

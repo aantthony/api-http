@@ -1,6 +1,6 @@
 {
   "name": "api-http",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Simple Node.js class for performing HTTP API requests.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -37,6 +37,6 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1"
+    "isomorphic-fetch": ">=2.2.1"
   }
 }
