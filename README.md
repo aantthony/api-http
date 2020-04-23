@@ -13,14 +13,12 @@ npm install api-http
 ## Example Usage
 
 ```js
-var APIHTTP = require('api-http');
+import ApiHttp from 'api-http';
 
-var facebook = new APIHTTP('https://graph.facebook.com/v2.5/');
+const facebook = new APIHTTP('https://graph.facebook.com/v2.5/');
 
-facebook.get('me')
-.then(function (person) {
-  console.log(person.first_name);
-});
+const person = await facebook.get('me')
+console.log(person.first_name);
 
 ```
 
@@ -51,71 +49,22 @@ api.post('customers', {
 ```
 
 
-### .token(accessToken)
+### .withAccessToken(accessToken)
 
 Create a new APIHTTP client scoped with an OAuth Bearer access token:
 
 Example:
 
 ```js
-facebook.token('2348923984324').get('me')
+facebook.withAccessToken('2348923984324').get('me')
 ```
 
-### .basic(username, password)
+### .withBasicAuth(username, password)
 
 Create a new APIHTTP client scoped with a [Basic Access Authorization](https://en.wikipedia.org/wiki/Basic_access_authentication) header:
 
 Example:
 
 ```js
-api.basic('Aladdin', 'open sesame').get('something/x/y')
+api.withBasicAuth('Aladdin', 'open sesame').get('something/x/y')
 ```
-
-
-## Options / Properties
-
-### accessToken
-
-Scope the client to an OAuth Bearer access token. This is an alternative to using the `.token(accessToken)` method, which would be more convenient if you are using different access tokens for multiple requests.
-
-### error
-
-Function: [res]
-
-Transform responses with a 4xx or 5xx HTTP status.
-
-The default implementation will try to pick up the error message to set `.status`, `.name`, and `.code` automatically.
-
-Example:
-```js
-var client = new APIHTTP('http://localhost:8080', {
-  error: function rejectHandler(res) {
-    throw new Error(res.message);
-  }
-})
-```
-
-### success
-
-Function: [res]
-
-Transform responses with 2xx HTTP status codes.
-
-If you wanted, you could pass the result through [camelize](https://www.npmjs.com/package/camelize) or something.
-
-Default implementation:
-
-```js
-function success(res) {
-  return res.data;
-}
-```
-
-### headers
-
-Function: []
-
-Function which returns the headers for the request.
-In general, you will never need to pass this option unless you are overriding the authentication logic. If you wanted to set a custom user-agent, or add a correlation ID, subclass this method and don't forget to call `super()`.
-
-Note: All of the options simply set keys on `this` which means you can easily subclass APIHTTP.
