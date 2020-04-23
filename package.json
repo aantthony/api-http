@@ -1,6 +1,6 @@
 {
   "name": "api-http",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Simple Node.js class for performing HTTP API requests.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,6 +13,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "prepublish": "npm run build",
     "test": "mocha"
   },
   "repository": {
