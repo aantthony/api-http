@@ -122,7 +122,7 @@ export default class ApiClient {
     return this.request('POST', path, query, body);
   }
 
-  async delete(path: string, body: any, query?: Query) {
+  async delete(path: string, body?: any, query?: Query) {
     return this.request('DELETE', path, query, body);
   }
 }
