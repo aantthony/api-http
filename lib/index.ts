@@ -139,6 +139,14 @@ export default class ApiClient {
     return this.request('POST', path, query, body);
   }
 
+  async put(path: string, body: any, query?: Query) {
+    return this.request('PUT', path, query, body);
+  }
+
+  async patch(path: string, body: any, query?: Query) {
+    return this.request('PATCH', path, query, body);
+  }
+
   async delete(path: string, body?: any, query?: Query) {
     return this.request('DELETE', path, query, body);
   }
