@@ -22,13 +22,28 @@ export class ApiClientError extends Error {
 
   status: number;
 
-  constructor(status: number, body: any) {
-    super(body.message);
+  type?: string;
+  title?: string;
+  detail?: string;
+  instance?: string;
+
+  url: string;
+
+  constructor(status: number, body: any, url: string) {
+    body = body || {};
+    super(`Request to ${url} failed with HTTP${status}: ${JSON.stringify(body)}`);
     this.name = `HTTP${status}`;
     this.code = body.code;
     this.field = body.field;
     this.body = body;
     this.status = status;
+    this.url = url;
+
+    // https://tools.ietf.org/html/rfc7807
+    this.type = body.type;
+    this.title = body.title;
+    this.detail = body.detail;
+    this.instance = body.instance;
   }
 }
 
@@ -107,10 +122,12 @@ export default class ApiClient {
     let json: any;
     if (/^application\/json/.test(contentType || '')) {
       json = await response.json();
+    } else if (/^application\/problem\+json/.test(contentType || '')) {
+      json = await response.json();
     }
 
     // console.log(url.toString(), response.status, json);
-    if (response.status >= 400) throw new ApiClientError(response.status, json);
+    if (response.status >= 400) throw new ApiClientError(response.status, json, url.toString());
     return json;
   }
 
